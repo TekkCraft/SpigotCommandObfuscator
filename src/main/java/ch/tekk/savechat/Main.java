@@ -11,7 +11,7 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         this.ensureConfig();
 
-        this.getServer().getPluginManager().registerEvents(new ChatListener(), this);
+        this.getServer().getPluginManager().registerEvents(new ChatListener(config), this);
     }
 
     @Override

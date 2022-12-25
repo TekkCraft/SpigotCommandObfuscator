@@ -21,9 +21,6 @@
                 <includes>
                     <include>plugin.yml</include>
                     <include>config.yml</include>
-                    <include>mobData.yml</include>
-                    <include>itemData.yml</include>
-                    <include>recipeData.yml</include>
                 </includes>
             </resource>
         </resources>
