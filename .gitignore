@@ -1,6 +1,6 @@
 /bin/
 .classpath
-/target/
+/target
 .settings/
 .project/
 .idea

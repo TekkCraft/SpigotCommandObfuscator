@@ -1,1 +1,5 @@
 playerConsoleChat: false
+commandWhiteList: true
+allowedCommands:
+  - /help
+  - /help about
