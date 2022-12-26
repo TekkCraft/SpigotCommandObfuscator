@@ -1,43 +1,38 @@
 package ch.tekk.savechat.listeners;
 
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerCommandSendEvent;
 
+import java.util.Collection;
 import java.util.List;
 
-public class CommandListener implements Listener {
+public class PlayerCommandSendListener implements Listener {
 
     private FileConfiguration config;
 
-    public CommandListener(FileConfiguration config) {
+    public PlayerCommandSendListener(FileConfiguration config) {
         this.config = config;
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onCommand(PlayerCommandPreprocessEvent event) {
-        if (!this.isEnabled()) {
-            System.out.println("Command whitelist is disabled");
+    public void onCommand(PlayerCommandSendEvent event) {
+        if (event.getPlayer().hasPermission("save-chat.bypass") || event.getPlayer().isOp()) {
+            return;
+        }
 
+        if (!this.isEnabled()) {
             return;
         }
 
         List<String> allowedCommands = this.config.getStringList("allowedCommands");
 
-        String message = event.getMessage();
-
-        if (!allowedCommands.contains(message)) {
-            Player player = event.getPlayer();
-
-            player.sendMessage(ChatColor.RED + "This command does not exist.");
-
-            event.setCancelled(true);
-        }
+        event.getCommands().retainAll(allowedCommands);
     }
 
     private boolean isEnabled() {

@@ -4,3 +4,9 @@ version: 1.0
 api-version: 1.19
 author: Tekk
 description: A timed teleport plugin.
+permissions:
+  save-chat.*:
+    description: Gives access to all SaveChat permissions
+    children:
+      save-chat.bypass:
+        description: Bypasses save-chat

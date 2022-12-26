@@ -20,13 +20,17 @@ public class TabCompleteListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onTabComplete(TabCompleteEvent event) {
+        if (event.getSender().hasPermission("save-chat.bypass") || event.getSender().isOp()) {
+            return;
+        }
+
         if (!this.isEnabled()) {
             return;
         }
 
         String buffer = event.getBuffer();
         List<String> completions = event.getCompletions();
-        List<String> allowed = this.config.getStringList("allowedCommands");
+        List<String> allowed = this.getAllowedCommands();
 
         List<Integer> deleteIndexes = new ArrayList<>();
 
@@ -47,6 +51,17 @@ public class TabCompleteListener implements Listener {
         }
 
         event.setCompletions(completions);
+    }
+
+    private List<String> getAllowedCommands() {
+        List<String> allowedCommands = this.config.getStringList("allowedCommands");
+        List<String> preSlashedCommands = new ArrayList<String>();
+
+        for (String command : allowedCommands) {
+            preSlashedCommands.add("/" + command);
+        }
+
+        return preSlashedCommands;
     }
 
     private boolean isEnabled() {
