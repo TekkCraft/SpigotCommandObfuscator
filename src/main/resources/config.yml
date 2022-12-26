@@ -1,5 +1,6 @@
 playerConsoleChat: false
 commandWhiteList: true
+tabWhiteList: true
 allowedCommands:
   - help
   - help about

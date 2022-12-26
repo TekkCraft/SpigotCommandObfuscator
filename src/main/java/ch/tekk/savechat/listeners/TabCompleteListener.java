@@ -73,9 +73,18 @@ public class TabCompleteListener implements Listener {
             return false;
         }
 
+        if (!this.config.isBoolean("tabWhiteList")) {
+            return false;
+        }
+
+        if (!this.config.getBoolean("tabWhiteList")) {
+            return false;
+        }
+
         if (!this.config.isList("allowedCommands")) {
             return false;
         }
+
         return true;
     }
 }
