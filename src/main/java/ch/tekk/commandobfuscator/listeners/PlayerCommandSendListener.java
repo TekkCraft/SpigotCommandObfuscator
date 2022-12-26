@@ -1,20 +1,16 @@
-package ch.tekk.savechat.listeners;
+package ch.tekk.commandobfuscator.listeners;
 
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerCommandSendEvent;
 
-import java.util.Collection;
 import java.util.List;
 
 public class PlayerCommandSendListener implements Listener {
 
-    private FileConfiguration config;
+    private final FileConfiguration config;
 
     public PlayerCommandSendListener(FileConfiguration config) {
         this.config = config;
@@ -22,7 +18,7 @@ public class PlayerCommandSendListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onCommand(PlayerCommandSendEvent event) {
-        if (event.getPlayer().hasPermission("save-chat.bypass") || event.getPlayer().isOp()) {
+        if (event.getPlayer().hasPermission("command-obfuscator.bypass") || event.getPlayer().isOp()) {
             return;
         }
 

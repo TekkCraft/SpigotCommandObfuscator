@@ -1,4 +1,4 @@
-package ch.tekk.savechat.listeners;
+package ch.tekk.commandobfuscator.listeners;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TabCompleteListener implements Listener {
 
-    private FileConfiguration config;
+    private final FileConfiguration config;
 
     public TabCompleteListener(FileConfiguration config) {
         this.config = config;
@@ -20,7 +20,7 @@ public class TabCompleteListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onTabComplete(TabCompleteEvent event) {
-        if (event.getSender().hasPermission("save-chat.bypass") || event.getSender().isOp()) {
+        if (event.getSender().hasPermission("command-obfuscator.bypass") || event.getSender().isOp()) {
             return;
         }
 
