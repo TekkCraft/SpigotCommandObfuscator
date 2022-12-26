@@ -1,6 +1,7 @@
 package ch.tekk.savechat;
 
 import ch.tekk.savechat.listeners.CommandListener;
+import ch.tekk.savechat.listeners.TabCompleteListener;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import ch.tekk.savechat.listeners.ChatListener;
@@ -14,6 +15,7 @@ public class Main extends JavaPlugin {
 
         this.getServer().getPluginManager().registerEvents(new ChatListener(config), this);
         this.getServer().getPluginManager().registerEvents(new CommandListener(config), this);
+        this.getServer().getPluginManager().registerEvents(new TabCompleteListener(config), this);
     }
 
     @Override
