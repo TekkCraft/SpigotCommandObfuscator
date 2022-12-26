@@ -3,7 +3,7 @@ main: ch.tekk.commandobfuscator.Main
 version: 1.0
 api-version: 1.19
 author: Tekk
-description: A timed teleport plugin.
+description: A plugin to obfuscate command auto-completes.
 permissions:
   command-obfuscator.*:
     description: Gives access to all CommandObfuscator permissions
